@@ -16,7 +16,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       defaults = {
-        ["<leader>o"] = { name = "+Octo" },
+        ["<leader>o"] = { name = "+octo" },
       },
     },
   },
