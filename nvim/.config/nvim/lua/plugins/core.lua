@@ -2,6 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
+      colorscheme = "tokyonight-night",
       kind_filter = {
         default = {
           "Constant",
