@@ -12,6 +12,13 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
-    -- configuration goes here
+    lang = "python3",
+  },
+  keys = {
+    { "<leader>cko", "<cmd>Leet<cr>", desc = "Open (leetcode.nvim)" },
+    { "<leader>ckl", "<cmd>Leet lang<cr>", desc = "Choose language (leetcode.nvim)" },
+    { "<leader>ckt", "<cmd>Leet test<cr>", desc = "Run tests (leetcode.nvim)" },
+    { "<leader>cks", "<cmd>Leet submit<cr>", desc = "Submit solution (leetcode.nvim)" },
+    { "<leader>ckc", "<cmd>Leet console<cr>", desc = "Open console (leetcode.nvim)" },
   },
 }
