@@ -3,6 +3,6 @@
 -- Add any additional keymaps here
 
 -- Remove carriage return
-vim.keymap.set("n", "<leader>tc", function()
+vim.keymap.set("n", "<leader>cc", function()
   vim.cmd(":%s/\r//")
 end, { desc = "Remove carriage return" })
