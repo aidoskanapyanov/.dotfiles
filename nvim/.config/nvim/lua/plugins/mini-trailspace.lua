@@ -1,4 +1,5 @@
 return {
+  -- usage: lua MiniTrailspace.trim()
   {
     "echasnovski/mini.trailspace",
     version = "*",
