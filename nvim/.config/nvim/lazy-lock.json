@@ -30,7 +30,7 @@
   "mason.nvim": { "branch": "main", "commit": "0950b15060067f752fde13a779a994f59516ce3d" },
   "mini.ai": { "branch": "main", "commit": "ebf806de0292ef89b2756cfb0b55040901d1c441" },
   "mini.hipatterns": { "branch": "main", "commit": "5d28a7e3f399de64c4dbf71f8c6c3b633d986f15" },
-  "mini.pairs": { "branch": "main", "commit": "18a2d9d7106d08d3560d07c03dcbf5680c8675cc" },
+  "mini.pairs": { "branch": "main", "commit": "ea9c763fccf114dc57efc32131604a8b39b90186" },
   "mini.surround": { "branch": "main", "commit": "af280fc18792b4d142aab4c1638a8949a38ff33a" },
   "mini.trailspace": { "branch": "main", "commit": "f43e2dff55a07e0a84c01ba4b25ed976a12eea44" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "29f7c215332ba95e470811c380ddbce2cebe2af4" },
