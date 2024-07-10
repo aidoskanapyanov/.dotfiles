@@ -20,23 +20,23 @@ local function prefer_bin_from_venv(executable_name)
 end
 
 return {
-  {
-    "mfussenegger/nvim-lint",
-    enabled = true,
-    opts = function(_, opts)
-      local linters = require("lint").linters
-
-      linters.mypy.cmd = prefer_bin_from_venv("mypy")
-
-      local linters_by_ft = {
-        python = { "mypy" },
-      }
-
-      -- extend opts.linters_by_ft
-      for ft, linters_ in pairs(linters_by_ft) do
-        opts.linters_by_ft[ft] = opts.linters_by_ft[ft] or {}
-        vim.list_extend(opts.linters_by_ft[ft], linters_)
-      end
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   enabled = true,
+  --   opts = function(_, opts)
+  --     local linters = require("lint").linters
+  --
+  --     linters.mypy.cmd = prefer_bin_from_venv("mypy")
+  --
+  --     local linters_by_ft = {
+  --       python = { "mypy" },
+  --     }
+  --
+  --     -- extend opts.linters_by_ft
+  --     for ft, linters_ in pairs(linters_by_ft) do
+  --       opts.linters_by_ft[ft] = opts.linters_by_ft[ft] or {}
+  --       vim.list_extend(opts.linters_by_ft[ft], linters_)
+  --     end
+  --   end,
+  -- },
 }
