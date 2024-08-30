@@ -4,4 +4,4 @@
 
 dependencies: ripgrep, fzf, fd
 
-chmod u+x ~/.local/bin/tmux-sessionizer
+chmod u+x bin/.local/bin/\*
