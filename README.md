@@ -4,4 +4,4 @@
 
 dependencies: ripgrep, fzf, fd
 
-chmod u+x bin/.local/bin/\*
+chmod -R u+x bin/.local/bin
