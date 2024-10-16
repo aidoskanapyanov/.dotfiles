@@ -1,3 +1,6 @@
+# set vi keybindings
+set -o vi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -77,7 +80,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting z)
+plugins=(
+	git
+	zsh-autosuggestions
+	fzf
+  z
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -109,8 +117,16 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export GPG_TTY=$(tty)
+source /home/aidos/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="/home/aidos/.local/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$PATH:/opt/nvim-linux64/bin"
+
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+alias c='clear'
 
 alias dcl="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && docker-compose logs -t --tail 5 && printf '\n\n'\""
 alias crn="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && crontab -l | grep curl && printf '\n\n'\""
@@ -126,13 +142,18 @@ alias ptdb="ssh ptdb1 -L 5433:localhost:5432 -N"
 alias pdate="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6 pt7 pt8 ptdb1\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && date && printf '\n\n'\""
 alias disk="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6 pt7 pt8 ptdb1\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && df -h | grep ubuntu && printf '\n\n'\""
 alias derr="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6 pt7 pt8 ptdb1\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && docker logs --since 10h -t $(docker ps -q) 2>&1 | grep -i -C 1 Error && printf '\n\n'\""
+alias vim="nvim"
 
-export GPG_TTY=$(tty)
+eval "$(zoxide init zsh)"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# pnpm
+export PNPM_HOME="/home/aidos/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
-export PATH="$PATH:/home/aidos/.local/bin"
+export BROWSER=wslview
 
-alias vim='nvim'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
