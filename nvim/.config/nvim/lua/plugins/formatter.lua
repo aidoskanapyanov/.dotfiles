@@ -4,7 +4,7 @@ return {
     opts = {
       formatters_by_ft = {
         htmldjango = { "djlint" },
-        python = { "ruff", "black" },
+        python = { "ruff", "isort", "black" },
       },
       default_format_opts = {
         timeout_ms = 30000,
