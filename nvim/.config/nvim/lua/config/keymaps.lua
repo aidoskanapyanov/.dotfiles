@@ -47,3 +47,8 @@ vim.keymap.set("n", "<leader>ct", "", {
     vim.api.nvim_win_set_cursor(0, return_position)
   end,
 })
+
+-- Jumping to context (upwards)
+vim.keymap.set("n", "[x", function()
+  require("treesitter-context").go_to_context(vim.v.count1)
+end, { silent = true, desc = "Jump up to context" })
