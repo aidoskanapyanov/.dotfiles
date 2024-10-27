@@ -52,3 +52,11 @@ vim.keymap.set("n", "<leader>ct", "", {
 vim.keymap.set("n", "[x", function()
   require("treesitter-context").go_to_context(vim.v.count1)
 end, { silent = true, desc = "Jump up to context" })
+
+-- Kubectl.nvim
+vim.keymap.set(
+  "n",
+  "<leader>k",
+  '<cmd>lua require("kubectl").toggle()<cr>',
+  { noremap = true, silent = true, desc = "Open kubectl.nvim" }
+)
