@@ -128,21 +128,9 @@ export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 alias c='clear'
 
-alias dcl="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && docker-compose logs -t --tail 5 && printf '\n\n'\""
-alias crn="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && crontab -l | grep curl && printf '\n\n'\""
-alias imv="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && cat docker-compose.yaml | grep 'payfintech/galymzhan:' && printf '\n\n'\""
-alias dcc="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && cat docker-compose.yaml && printf '\n\n'\""
-alias gg="ssh gg -L 9001:localhost:9001 -N"
-alias dps="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && docker ps && printf '\n\n'\""
-alias btl="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && tail -n 1 .bashrc && printf '\n\n'\""
-alias pscurl="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && ps -auwx | grep curl && printf '\n\n'\""
-alias dcr="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && docker-compose restart && printf '\n\n'\""
-alias croncurl="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && grep CRON /var/log/syslog | grep curl && printf '\n\n'\""
-alias ptdb="ssh ptdb1 -L 5433:localhost:5432 -N"
-alias pdate="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6 pt7 pt8 ptdb1\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && date && printf '\n\n'\""
-alias disk="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6 pt7 pt8 ptdb1\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && df -h | grep ubuntu && printf '\n\n'\""
-alias derr="echo -n \"pt1 pt2 pt3 pt4 pt5 pt6 pt7 pt8 ptdb1\" | xargs -d ' ' -I THIS ssh THIS \"printf THIS && printf '\n' && docker logs --since 10h -t $(docker ps -q) 2>&1 | grep -i -C 1 Error && printf '\n\n'\""
 alias vim="nvim"
+alias ts="tmux-sessionizer"
+alias ta="tmux a"
 
 eval "$(zoxide init zsh)"
 
