@@ -46,6 +46,13 @@ return {
         end,
         desc = "Harpoon to File 4",
       },
+      {
+        "<c-h>",
+        function()
+          require("harpoon"):list():select(5)
+        end,
+        desc = "Harpoon to File 5",
+      },
     }
 
     return keys
