@@ -40,18 +40,11 @@ return {
         desc = "Harpoon to File 3",
       },
       {
-        "<c-u>",
+        "<c-i>",
         function()
           require("harpoon"):list():select(4)
         end,
         desc = "Harpoon to File 4",
-      },
-      {
-        "<c-i>",
-        function()
-          require("harpoon"):list():select(5)
-        end,
-        desc = "Harpoon to File 5",
       },
     }
 
