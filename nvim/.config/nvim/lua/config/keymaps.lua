@@ -60,3 +60,17 @@ vim.keymap.set(
   '<cmd>lua require("kubectl").toggle()<cr>',
   { noremap = true, silent = true, desc = "Open kubectl.nvim" }
 )
+
+-- git-worktree telescope finder keymaps
+vim.keymap.set(
+  "n",
+  "<leader>sv",
+  "<cmd>lua require('telescope').extensions.git_worktree.git_worktree()<cr>",
+  { silent = true, desc = "git-worktree" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>sV",
+  "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+  { silent = true, desc = "create_git_worktree" }
+)
