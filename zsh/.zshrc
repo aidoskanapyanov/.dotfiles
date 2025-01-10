@@ -133,6 +133,7 @@ alias c='clear'
 alias vim="nvim"
 alias ts="tmux-sessionizer"
 alias ta="tmux a"
+alias p="pnpm"
 
 eval "$(zoxide init zsh)"
 
