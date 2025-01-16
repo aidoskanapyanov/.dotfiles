@@ -10,7 +10,14 @@ return {
     telescope.setup({
       pickers = {
         find_files = {
-          find_command = { "rg", "--files", "--iglob", "!.git", "--hidden" },
+          find_command = {
+            "rg",
+            "--files",
+            "--glob=!**/.git/*",
+            "--glob=!**/.venv/*",
+            "--glob=!**/venv/*",
+            "--hidden",
+          },
         },
         grep_string = {
           additional_args = { "--hidden" },
