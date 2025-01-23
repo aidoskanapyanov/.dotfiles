@@ -62,15 +62,15 @@ vim.keymap.set(
 )
 
 -- git-worktree telescope finder keymaps
-vim.keymap.set(
-  "n",
-  "<leader>sv",
-  "<cmd>lua require('telescope').extensions.git_worktree.git_worktree()<cr>",
-  { silent = true, desc = "git-worktree" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>sV",
-  "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
-  { silent = true, desc = "create_git_worktree" }
-)
+-- vim.keymap.set(
+--   "n",
+--   "<leader>sv",
+--   "<cmd>lua require('telescope').extensions.git_worktree.git_worktree()<cr>",
+--   { silent = true, desc = "git-worktree" }
+-- )
+-- vim.keymap.set(
+--   "n",
+--   "<leader>sV",
+--   "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+--   { silent = true, desc = "create_git_worktree" }
+-- )
