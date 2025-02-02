@@ -4,16 +4,6 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
   },
-  adapters = {
-    anthropic = function()
-      local api_key = os.getenv("ANTHROPIC_API_KEY")
-      return require("codecompanion.adapters").extend("anthropic", {
-        env = {
-          api_key = api_key,
-        },
-      })
-    end,
-  },
   opts = {
     strategies = {
       -- Change the default chat adapter
