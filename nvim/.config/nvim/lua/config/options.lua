@@ -10,3 +10,5 @@ opt.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 opt.shiftwidth = 4 -- Number of spaces inserted when indenting
 
 vim.g.root_spec = { "cwd" }
+
+vim.g.ai_cmp = false
