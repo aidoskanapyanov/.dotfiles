@@ -4,7 +4,7 @@ return {
     opts = {
       formatters_by_ft = {
         htmldjango = { "djlint" },
-        python = { "ruff_organize_imports", "isort", "black" },
+        python = { "ruff_format", "isort", "black", "ruff_organize_imports" },
         markdown = { "prettier" },
         sql = { "sql_formatter" },
       },
