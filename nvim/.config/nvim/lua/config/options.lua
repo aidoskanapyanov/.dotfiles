@@ -12,3 +12,5 @@ opt.shiftwidth = 4 -- Number of spaces inserted when indenting
 vim.g.root_spec = { "cwd" }
 
 vim.g.ai_cmp = false
+
+vim.g.lazyvim_blink_main = true
