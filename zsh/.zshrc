@@ -134,6 +134,7 @@ alias vim="nvim"
 alias ts="tmux-sessionizer"
 alias ta="tmux a"
 alias p="pnpm"
+alias v="nvim"
 
 eval "$(zoxide init zsh)"
 
