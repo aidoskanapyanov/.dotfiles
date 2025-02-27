@@ -36,4 +36,13 @@ return {
       },
     },
   },
+  keys = {
+    {
+      "<leader>a",
+      "<cmd>CodeCompanionChat Toggle<cr>",
+      mode = { "v", "n" },
+      noremap = true,
+      silent = true,
+    },
+  },
 }

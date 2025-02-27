@@ -74,3 +74,5 @@ vim.keymap.set(
 --   "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
 --   { silent = true, desc = "create_git_worktree" }
 -- )
+
+vim.cmd([[cab cc CodeCompanionChat]])
