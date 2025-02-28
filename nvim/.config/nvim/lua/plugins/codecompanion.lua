@@ -43,6 +43,7 @@ return {
       mode = { "v", "n" },
       noremap = true,
       silent = true,
+      desc = "Open CodeCompanion",
     },
   },
 }
