@@ -10,5 +10,10 @@ return {
       },
     },
     bigfile = { enabled = true },
+    picker = {
+      layout = {
+        fullscreen = true,
+      },
+    },
   },
 }
