@@ -76,3 +76,7 @@ vim.keymap.set(
 -- )
 
 vim.cmd([[cab cc CodeCompanionChat]])
+
+vim.keymap.set("n", "<leader>xv", "<cmd>LazyExtras<cr>", { noremap = true, silent = true, desc = "Open LazyExtras" })
+
+vim.keymap.set("n", "<leader>cL", "<cmd>LspRestart<cr>", { noremap = true, silent = true, desc = "Restart LSP" })
