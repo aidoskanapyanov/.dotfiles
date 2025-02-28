@@ -14,6 +14,7 @@ return {
       layout = {
         fullscreen = true,
       },
+      sources = { lines = { layout = { fullscreen = false } } },
     },
   },
 }
