@@ -136,6 +136,7 @@ alias ta="tmux a"
 alias p="pnpm"
 alias v="nvim"
 alias lg="lazygit"
+alias nh="nethogs"
 
 eval "$(zoxide init zsh)"
 
