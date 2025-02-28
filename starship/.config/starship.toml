@@ -19,7 +19,6 @@ $time\
 style = "fg:#e3e5e5 bg:#4c6391"
 format = "[ $path ]($style)"
 truncation_length = 3
-truncation_symbol = "…/"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
