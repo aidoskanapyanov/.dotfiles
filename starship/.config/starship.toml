@@ -10,6 +10,7 @@ $nodejs\
 $rust\
 $golang\
 $php\
+$python\
 [](fg:#212736 bg:#1d2230)\
 $time\
 [ ](fg:#1d2230)\
@@ -54,6 +55,12 @@ format = '[[ $symbol ($version) ](fg:#4c6391 bg:#212736)]($style)'
 symbol = ""
 style = "bg:#212736"
 format = '[[ $symbol ($version) ](fg:#4c6391 bg:#212736)]($style)'
+
+[python]
+symbol = ""
+style = "bg:#212736"
+format = '[[ $symbol ($version) ](fg:#4c6391 bg:#212736)]($style)'
+python_binary = "python3"
 
 [time]
 disabled = false
