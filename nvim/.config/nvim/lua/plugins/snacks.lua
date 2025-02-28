@@ -9,5 +9,6 @@ return {
         enabled = false,
       },
     },
+    bigfile = { enabled = true },
   },
 }
