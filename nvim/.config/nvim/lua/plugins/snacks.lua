@@ -11,9 +11,9 @@ return {
     },
     bigfile = { enabled = true },
     picker = {
-      -- layout = {
-      --   fullscreen = false,
-      -- },
+      layout = {
+        fullscreen = true,
+      },
     },
   },
 }
