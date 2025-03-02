@@ -8,6 +8,7 @@ return {
           -- Disable its definition and reference providers to avoid duplication
           client.server_capabilities.definitionProvider = false
           client.server_capabilities.referencesProvider = false
+          client.server_capabilities.documentSymbolProvider = false
         end,
       },
     },
