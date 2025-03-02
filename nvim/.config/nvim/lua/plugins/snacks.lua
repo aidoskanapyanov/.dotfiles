@@ -15,6 +15,7 @@ return {
         fullscreen = true,
       },
       sources = { lines = { layout = { fullscreen = false } } },
+      previewers = { git = { native = true } },
     },
   },
 }
