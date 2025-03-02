@@ -86,3 +86,11 @@ vim.keymap.set("n", "<leader>y", function()
   vim.fn.setreg(vim.v.register, filepath)
   require("noice").notify("Copied: " .. filepath, "info")
 end, { desc = "Copy relative filename" })
+
+-- FzfLua keymaps
+vim.keymap.set(
+  "n",
+  "<leader>fd",
+  "<cmd>FzfLua dap_breakpoints<cr>",
+  { noremap = true, silent = true, desc = "FzfLua breakpoints" }
+)
