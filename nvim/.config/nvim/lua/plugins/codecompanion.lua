@@ -11,6 +11,7 @@ return {
           env = {
             api_key = "cmd:grep '^ANTHROPIC_API_KEY=' ~/.dotfiles/.env | cut -d '=' -f2 | tr -d '\"'",
           },
+          schema = { model = { default = "claude-3-7-sonnet-20250219" } },
         })
       end,
     },
