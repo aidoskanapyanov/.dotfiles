@@ -7,6 +7,7 @@ return {
         python = { "ruff_format", "isort", "black", "ruff_organize_imports" },
         markdown = { "prettier" },
         sql = { "sql_formatter" },
+        just = { "just" },
       },
       formatters = {
         -- TODO: use .config/sql_formatter.json file instead
