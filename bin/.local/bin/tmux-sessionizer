@@ -4,10 +4,8 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     selected=$(find ~/dev/work \
-        ~/dev/personal-projects \
         ~ \
         ~/.local/share/nvim/lazy \
-        ~/dev/personal-projects/antifraud-tasks-w-zhanseri \
         -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 

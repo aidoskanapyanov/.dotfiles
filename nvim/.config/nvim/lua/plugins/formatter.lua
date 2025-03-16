@@ -8,6 +8,7 @@ return {
         markdown = { "prettier" },
         sql = { "sql_formatter" },
         just = { "just" },
+        tf = { "terraform_fmt" },
       },
       formatters = {
         -- TODO: use .config/sql_formatter.json file instead
