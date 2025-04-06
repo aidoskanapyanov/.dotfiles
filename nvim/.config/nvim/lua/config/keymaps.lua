@@ -95,6 +95,13 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "FzfLua breakpoints" }
 )
 
+vim.keymap.set(
+  "n",
+  "<leader>sg",
+  "<cmd>FzfLua live_grep<cr>",
+  { noremap = true, silent = true, desc = "Grep (Root Dir)" }
+)
+
 vim.keymap.set("n", "<leader>gg", function()
   Snacks.lazygit({ size = { width = 1, height = 1 }, cwd = LazyVim.root.get() })
 end, { desc = "Lazygit (root dir)" })
