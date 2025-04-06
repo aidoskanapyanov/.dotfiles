@@ -94,3 +94,7 @@ vim.keymap.set(
   "<cmd>FzfLua dap_breakpoints<cr>",
   { noremap = true, silent = true, desc = "FzfLua breakpoints" }
 )
+
+vim.keymap.set("n", "<leader>gg", function()
+  Snacks.lazygit({ size = { width = 1, height = 1 }, cwd = LazyVim.root.get() })
+end, { desc = "Lazygit (root dir)" })
