@@ -1,7 +1,6 @@
 [user]
-        email = aidos.kanapyanov@alumni.nu.edu.kz
+        email = aidos.kanapyanov@chetwood.co
         name = Aidos Kanapyanov
-        signingkey = F3E9750017F8136F
 [commit]
         gpgsign = false
 [credential]

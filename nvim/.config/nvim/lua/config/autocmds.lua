@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "scss",
     "vue",
     "lua",
+    "terraform",
   },
   callback = function()
     vim.opt_local.tabstop = 2
