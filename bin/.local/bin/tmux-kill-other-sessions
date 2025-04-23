@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Get current session name
+current_session=$(tmux display-message -p '#S')
+
+# List all sessions except current one and kill them
+for session in $(tmux list-sessions -F "#S" | grep -v "^$current_session$"); do
+    tmux kill-session -t "$session"
+done
+
+# Show notification
+tmux display-message "Killed all sessions except $current_session"
