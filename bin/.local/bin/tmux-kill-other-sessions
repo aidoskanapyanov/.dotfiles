@@ -9,4 +9,4 @@ for session in $(tmux list-sessions -F "#S" | grep -v "^$current_session$"); do
 done
 
 # Show notification
-tmux display-message "Killed all sessions except $current_session"
+tmux display-message -d 50 "Killed all sessions except $current_session"
