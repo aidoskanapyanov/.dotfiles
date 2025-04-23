@@ -140,6 +140,8 @@ alias v="nvim"
 alias lg="lazygit"
 alias nh="nethogs"
 
+alias sal="aws sso login --profile savings_sandbox"
+
 eval "$(zoxide init zsh)"
 
 # pnpm
