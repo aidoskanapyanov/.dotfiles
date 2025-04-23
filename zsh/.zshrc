@@ -150,7 +150,9 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-export BROWSER="/home/aidos/.dotfiles/msedge.exe"
+export BROWSER=wslview
+export GH_PAGER=
+export AWS_PAGER=
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
