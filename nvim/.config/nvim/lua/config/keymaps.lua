@@ -4,7 +4,7 @@
 
 -- Remove carriage return
 vim.keymap.set("n", "<leader>xc", function()
-  vim.cmd(":%s/\r//")
+  vim.cmd([[:%s/\r//ge]])
 end, { desc = "Remove carriage return" })
 
 -- Rename tag (html/jsx/tsx etc)
