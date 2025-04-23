@@ -155,6 +155,7 @@ esac
 export BROWSER=wslview
 export GH_PAGER=
 export AWS_PAGER=
+export AWS_PROFILE=savings_sandbox
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
