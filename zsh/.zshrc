@@ -141,6 +141,7 @@ alias lg="lazygit"
 alias nh="nethogs"
 
 alias sal="aws sso login --profile savings_sandbox"
+alias t="task"
 
 eval "$(zoxide init zsh)"
 
