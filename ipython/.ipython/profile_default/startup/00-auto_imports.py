@@ -15,7 +15,12 @@
 # polars \
 # beautifulsoup4 \
 # html5lib \
-# lxml
+# lxml \
+# pypdf \
+# openai \
+# python-dotenv \
+# ipdb \
+# markdownify
 
 # Data manipulation
 import altair as alt
