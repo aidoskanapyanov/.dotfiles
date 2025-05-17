@@ -20,7 +20,8 @@
 # openai \
 # python-dotenv \
 # ipdb \
-# markdownify
+# markdownify \
+# ydata-profiling
 
 # Data manipulation
 import altair as alt
