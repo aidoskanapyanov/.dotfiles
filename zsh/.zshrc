@@ -130,6 +130,8 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export PATH=/usr/local/bin/:$PATH
+
 alias c='clear'
 
 alias vim="nvim"
@@ -162,3 +164,7 @@ export AWS_PROFILE=savings_sandbox
 
 # eval "$(starship init zsh)"
 # . "$HOME/.cargo/env"
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
