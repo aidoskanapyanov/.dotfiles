@@ -148,6 +148,9 @@ alias t="task"
 # openvpn andersen
 alias vpn="/home/aidos/dev/personal/ovpn-andersen/openvpn-connect.exp"
 
+# faster chrome opening
+alias chrome='google-chrome-stable --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --disable-plugins --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-renderer-backgrounding'
+
 eval "$(zoxide init zsh)"
 
 # pnpm
