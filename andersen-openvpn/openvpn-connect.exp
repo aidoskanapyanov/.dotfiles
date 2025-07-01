@@ -1,0 +1,24 @@
+#!/usr/bin/expect -f
+
+set config_path "/path/to/ovpn/file/profile-userlocked.ovpn"
+set username "secret"
+set password "secret"
+set totp_secret "secret"
+
+spawn sudo openvpn --config $config_path --auth-user-pass
+
+expect "Enter Auth Username:" {
+    send "$username\r"
+}
+
+expect "Enter Auth Password:" {
+    send "$password\r"
+}
+
+expect "CHALLENGE: Enter Authenticator Code" {
+    set otp [exec oathtool --totp -b $totp_secret]
+    send "$otp\r"
+}
+
+expect "Initialization Sequence Completed"
+interact
