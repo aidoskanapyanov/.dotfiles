@@ -145,6 +145,9 @@ alias nh="nethogs"
 alias sal="aws sso login --profile savings_sandbox"
 alias t="task"
 
+# openvpn andersen
+alias vpn="/home/aidos/dev/personal/ovpn-andersen/openvpn-connect.exp"
+
 eval "$(zoxide init zsh)"
 
 # pnpm
