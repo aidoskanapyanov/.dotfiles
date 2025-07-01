@@ -16,6 +16,18 @@ return {
       },
     },
     bigfile = { enabled = true },
+    gitbrowse = {
+      open = function(url)
+        vim.system({ "wslview", url })
+      end,
+      url_patterns = {
+        ["git.suresecure%.de"] = {
+          branch = "/-/tree/{branch}",
+          file = "/-/blob/{branch}/{file}#L{line_start}-L{line_end}",
+          commit = "/-/commit/{commit}",
+        },
+      },
+    },
     picker = {
       layout = {
         fullscreen = true,
