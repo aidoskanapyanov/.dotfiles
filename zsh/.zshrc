@@ -163,6 +163,7 @@ esac
 
 export BROWSER=wslview
 export GH_PAGER=
+export GLAB_PAGER=
 export AWS_PAGER=
 export AWS_PROFILE=savings_sandbox
 
