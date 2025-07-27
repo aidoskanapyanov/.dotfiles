@@ -101,3 +101,20 @@ vim.keymap.set(
   "<cmd>FzfLua dap_breakpoints<cr>",
   { noremap = true, silent = true, desc = "FzfLua breakpoints" }
 )
+
+-- Open urls with wslview
+local function is_url(text)
+  return text:match("^https?://") ~= nil
+end
+
+-- Function to open URL under cursor
+local function open_url()
+  local cursor_word = vim.fn.expand("<cfile>")
+  if is_url(cursor_word) then
+    vim.fn.system(string.format('wslview "%s"', cursor_word))
+  end
+end
+
+-- Map gx to open URLs
+vim.keymap.set("n", "gx", open_url, { noremap = true, silent = true })
+vim.keymap.set("v", "gx", open_url, { noremap = true, silent = true })
