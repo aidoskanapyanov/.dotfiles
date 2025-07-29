@@ -3,6 +3,15 @@ return {
   opts = {
     servers = {
       pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              -- pylint = { enabled = false },
+              pyflakes = { enabled = false },
+              pycodestyle = { enabled = false },
+            },
+          },
+        },
         -- Keep pylsp enabled for other features
         on_attach = function(client, _)
           -- Disable its definition and reference providers to avoid duplication
