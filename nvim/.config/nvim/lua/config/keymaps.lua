@@ -82,7 +82,7 @@ vim.cmd([[cab grl term PAGER="less -FX" gh run view --log]])
 vim.cmd([[cab gjl term PAGER="less -FX" gh run view --log --job]])
 vim.cmd([[cab grv term gh run view -w]])
 
-vim.cmd([[cab tic !xdg-open https://chetwood.atlassian.net/browse/]])
+vim.cmd([[cab tic !wslview https://chetwood.atlassian.net/browse/]])
 
 vim.keymap.set("n", "<leader>xv", "<cmd>LazyExtras<cr>", { noremap = true, silent = true, desc = "Open LazyExtras" })
 
