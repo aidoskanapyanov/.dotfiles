@@ -151,6 +151,7 @@ alias vpn="/home/aidos/dev/personal/ovpn-andersen/openvpn-connect.exp"
 # faster chrome opening
 alias chrome='google-chrome-stable --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --disable-plugins --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-renderer-backgrounding'
 alias mlrc='mlr --ijson --opprint --barred cat'
+alias mlrcv='mlr --icsv --opprint --barred cat'
 
 eval "$(zoxide init zsh)"
 
