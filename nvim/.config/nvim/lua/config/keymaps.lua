@@ -118,3 +118,7 @@ end
 -- Map gx to open URLs
 vim.keymap.set("n", "gx", open_url, { noremap = true, silent = true })
 vim.keymap.set("v", "gx", open_url, { noremap = true, silent = true })
+
+-- Navigate quickfix list with Alt + Arrow keys
+vim.keymap.set("n", "<A-Left>", "[q", { desc = "Previous quickfix item", remap = true })
+vim.keymap.set("n", "<A-Right>", "]q", { desc = "Next quickfix item" , remap = true})
