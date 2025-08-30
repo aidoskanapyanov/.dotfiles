@@ -183,3 +183,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(gh completion -s zsh)"
+
+# Bind 'v' in normal mode to edit the command line in your external editor
+export EDITOR='nvim'
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^E' edit-command-line
