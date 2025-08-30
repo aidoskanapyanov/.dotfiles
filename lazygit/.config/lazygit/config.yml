@@ -5,3 +5,14 @@ git:
 
 os:
   edit: '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})'
+
+customCommands:
+  - key: "E"
+    description: "Add empty commit"
+    context: files
+    command: 'git commit --allow-empty -m "empty commit"'
+    loadingText: "Committing empty commit..."
+    prompts:
+      - type: input
+        title: Empty commit message
+        initialValue: "(empty commit)"
