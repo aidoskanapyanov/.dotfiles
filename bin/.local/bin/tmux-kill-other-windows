@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# must be run inside tmux
+if [ -z "${TMUX:-}" ]; then
+  echo "Not inside tmux." >&2
+  exit 1
+fi
+
+current_session=$(tmux display-message -p '#S')
+current_window_id=$(tmux display-message -p '#{window_id}')
+current_window_index=$(tmux display-message -p '#I')
+current_window_name=$(tmux display-message -p '#W')
+
+# kill all windows in the current session except the current one
+while IFS= read -r winid; do
+  if [ "$winid" != "$current_window_id" ]; then
+    tmux kill-window -t "$winid"
+  fi
+done < <(tmux list-windows -F "#{window_id}")
+
+# notify
+tmux display-message -d 50 "Killed all windows except ${current_session}:${current_window_index} (${current_window_name})"
