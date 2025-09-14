@@ -35,5 +35,17 @@ return {
         "-c",
       },
     })
+
+    -- sls offline debugger
+    table.insert(dap.configurations.python, {
+      type = "python",
+      request = "attach",
+      name = "Attach to debugpy (sls offline)",
+      connect = { host = "127.0.0.1", port = 5678 },
+      env = { PYTHONPATH = vim.fn.getcwd() },
+      pathMappings = {
+        { localRoot = vim.fn.getcwd(), remoteRoot = "/home/aidos/dev/work/seagard-backend" },
+      },
+    })
   end,
 }
