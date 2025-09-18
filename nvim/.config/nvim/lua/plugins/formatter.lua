@@ -19,6 +19,8 @@ return {
             vim.fn.json_encode({
               tabWidth = 4,
             }),
+            "-l",
+            "postgresql",
           },
         },
       },

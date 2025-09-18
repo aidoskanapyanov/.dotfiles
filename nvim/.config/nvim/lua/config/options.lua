@@ -19,3 +19,11 @@ vim.g.lazyvim_picker = "snacks"
 
 -- disable autoformatting when saving a file
 vim.g.autoformat = false
+
+-- custom filetypes
+vim.filetype.add({
+  extension = {
+    psql = "sql",
+    pgsql = "sql",
+  },
+})
