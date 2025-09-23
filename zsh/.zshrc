@@ -185,3 +185,5 @@ export EDITOR='nvim'
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^E' edit-command-line
+
+fpath=($HOME/.zsh-complete $fpath)
