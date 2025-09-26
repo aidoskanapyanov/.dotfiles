@@ -34,6 +34,11 @@ return {
       },
       sources = { lines = { layout = { fullscreen = false } } },
       previewers = { git = { native = true } },
+      formatters = {
+        file = {
+          truncate = 200, -- truncate the file path to (roughly) this length
+        },
+      },
     },
   },
 }
