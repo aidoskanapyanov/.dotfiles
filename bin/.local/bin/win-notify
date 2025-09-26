@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+message="${*:-hello from WSL}"
+
+# base64-encode the UTF-8 message (single-line)
+b64=$(printf '%s' "$message" | base64 -w0)
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "
+[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType=WindowsRuntime] > \$null;
+\$template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent([Windows.UI.Notifications.ToastTemplateType]::ToastText02);
+\$text = \$template.GetElementsByTagName('text');
+\$text.Item(0).AppendChild(\$template.CreateTextNode('WSL')) | Out-Null;
+\$decoded = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('$b64'));
+\$text.Item(1).AppendChild(\$template.CreateTextNode(\$decoded)) | Out-Null;
+\$xml = New-Object Windows.Data.Xml.Dom.XmlDocument;
+\$xml.LoadXml(\$template.GetXml());
+\$toast = [Windows.UI.Notifications.ToastNotification]::new(\$xml);
+\$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('WSL');
+\$notifier.Show(\$toast);
+"

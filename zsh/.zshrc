@@ -152,6 +152,7 @@ alias vpn="/home/aidos/dev/personal/ovpn-andersen/openvpn-connect.exp"
 alias chrome='google-chrome-stable --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-extensions --disable-plugins --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-renderer-backgrounding'
 alias mlrc='mlr --ijson --opprint --barred cat'
 alias mlrcv='mlr --icsv --opprint --barred cat'
+alias notify='win-notify'
 
 eval "$(zoxide init zsh)"
 
