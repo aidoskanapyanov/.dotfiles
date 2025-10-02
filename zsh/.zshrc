@@ -153,6 +153,7 @@ alias chrome='google-chrome-stable --no-sandbox --disable-gpu --disable-dev-shm-
 alias mlrc='mlr --ijson --opprint --barred cat'
 alias mlrcv='mlr --icsv --opprint --barred cat'
 alias notify='win-notify'
+alias bat='batcat'
 
 eval "$(zoxide init zsh)"
 
