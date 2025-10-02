@@ -155,6 +155,9 @@ alias mlrcv='mlr --icsv --opprint --barred cat'
 alias notify='win-notify'
 alias bat='batcat'
 
+
+export MANPAGER='nvim +Man!'
+
 eval "$(zoxide init zsh)"
 
 # pnpm
