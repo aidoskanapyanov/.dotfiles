@@ -183,6 +183,8 @@ export GLAB_PAGER=
 export AWS_PAGER=
 export AWS_PROFILE=savings_sandbox
 
+export JQ_COLORS="0;34:0;31:0;32:0;33:0;32:0;35:0;35:0;36"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # eval "$(starship init zsh)"
