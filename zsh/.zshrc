@@ -159,7 +159,6 @@ alias bat='batcat'
 
 alias sview='wslview $(gh run list --json url -q ".[0].url" --workflow $(fd -H sandbox | rg -v delete | rev | cut --delimiter=/ --fields=1 | rev))'
 alias srun='gh workflow run --ref $(git branch --show-current) $(fd -H sandbox | rg -v delete | rev | cut --delimiter=/ --fields=1 | rev)'
-alias srun='gh run list --workflow $(fd -H -tf sandbox | rg -v delete | rev | cut --delimiter=/ --fields=1 | rev)'
 alias slist='gh run list --workflow $(fd -H -tf sandbox | rg -v delete | rev | cut --delimiter=/ --fields=1 | rev)'
 
 # fancy preview with syntax color highlighting
