@@ -204,3 +204,6 @@ bindkey '^E' edit-command-line
 fpath=($HOME/.zsh-complete $fpath)
 
 # eval "$(starship init zsh)"
+
+# opencode
+export PATH=/home/aidos/.opencode/bin:$PATH
