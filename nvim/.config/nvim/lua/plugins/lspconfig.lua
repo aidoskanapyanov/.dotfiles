@@ -2,23 +2,17 @@ return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
-      pylsp = {
+      pylsp = { enabled = false },
+      pyright = {
         settings = {
-          pylsp = {
-            plugins = {
-              -- pylint = { enabled = false },
-              pyflakes = { enabled = false },
-              pycodestyle = { enabled = false },
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = "openFilesOnly",
+              useLibraryCodeForTypes = true,
             },
           },
         },
-        -- Keep pylsp enabled for other features
-        on_attach = function(client, _)
-          -- Disable its definition and reference providers to avoid duplication
-          client.server_capabilities.definitionProvider = false
-          client.server_capabilities.referencesProvider = false
-          client.server_capabilities.documentSymbolProvider = false
-        end,
       },
       yamlls = {
         settings = {
