@@ -212,3 +212,15 @@ fpath=($HOME/.zsh-complete $fpath)
 export PATH=/home/aidos/.opencode/bin:$PATH
 
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+
+# faah
+play_fail_sound() {
+  local exit_code=$?
+  if [[ $exit_code -ne 0 ]]; then
+    powershell.exe -NoProfile -Command \
+      "(New-Object Media.SoundPlayer 'C:\Users\a.kanapyanov\Downloads\Faah sound effect.wav').PlaySync()" \
+      >/dev/null 2>&1 &!
+  fi
+}
+precmd_functions+=(play_fail_sound)
