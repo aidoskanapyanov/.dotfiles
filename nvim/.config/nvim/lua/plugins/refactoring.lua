@@ -1,21 +1,19 @@
 return {
-  -- {
-  --   "ThePrimeagen/refactoring.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   config = function()
-  --     require("refactoring").setup()
-  --   end,
-  --   keys = {
-  --     { "<leader>re", "<cmd>Refactor extract<cr>", mode = "x", desc = "Extract" },
-  --     { "<leader>rf", "<cmd>Refactor extract_to_file<cr>", mode = "x", desc = "Extract to file" },
-  --     { "<leader>rv", "<cmd>Refactor extract_var<cr>", mode = "x", desc = "Extract var" },
-  --     { "<leader>ri", "<cmd>Refactor inline_var<cr>", mode = { "n", "x" }, desc = "Inline var" },
-  --     { "<leader>rI", "<cmd>Refactor inline_func<cr>", mode = "n", desc = "Inline func" },
-  --     { "<leader>rb", "<cmd>Refactor extract_block<cr>", mode = "n", desc = "Extract block" },
-  --     { "<leader>rbf", "<cmd>Refactor extract_block_to_file<cr>", mode = "n", desc = "Extract block to file" },
-  --   },
-  -- },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "lewis6991/async.nvim", -- Kept your fix here
+    },
+    -- This overrides and completely replaces LazyVim's broken config function
+    config = function()
+      require("refactoring").setup({})
+
+      -- Safely check if telescope exists before attempting to load it
+      local ok, telescope = pcall(require, "telescope")
+      if ok then
+        -- pcall stops the error from crashing Neovim if the extension fails
+        pcall(telescope.load_extension, "refactoring")
+      end
+    end,
+  },
 }
