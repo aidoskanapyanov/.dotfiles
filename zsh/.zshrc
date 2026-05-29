@@ -131,7 +131,7 @@ export PATH="/snap/bin:$PATH"
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
-export GOROOT=/usr/local/go
+# export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 export PATH=/usr/local/bin/:$PATH
