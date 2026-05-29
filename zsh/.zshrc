@@ -179,7 +179,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-export BROWSER=wslview
+# export BROWSER=wslview
 export GH_PAGER=
 export GLAB_PAGER=
 export AWS_PAGER=
@@ -224,3 +224,5 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 #   fi
 # }
 # precmd_functions+=(play_fail_sound)
+
+bindkey "ç" fzf-cd-widget
