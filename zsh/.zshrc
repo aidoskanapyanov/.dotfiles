@@ -22,7 +22,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-zstyle ':omz:plugins:nvm' lazy yes
+# zstyle ':omz:plugins:nvm' lazy yes
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -90,7 +90,7 @@ plugins=(
     zsh-syntax-highlighting
 	fzf
     z
-    nvm
+    # nvm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -226,3 +226,6 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 # precmd_functions+=(play_fail_sound)
 
 bindkey "ç" fzf-cd-widget
+
+# use fnm because nvm is super slow :/
+eval "$(fnm env --use-on-cd)"
