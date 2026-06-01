@@ -229,3 +229,6 @@ bindkey "ç" fzf-cd-widget
 
 # use fnm because nvm is super slow :/
 command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd)"
+
+# fzf sourcing
+source <(fzf --zsh)
