@@ -232,3 +232,5 @@ command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd)"
 
 # fzf sourcing
 source <(fzf --zsh)
+
+[[ -f /root/.sh_functions_wf ]] && . /root/.sh_functions_wf
