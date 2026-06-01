@@ -228,4 +228,4 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 bindkey "ç" fzf-cd-widget
 
 # use fnm because nvm is super slow :/
-eval "$(fnm env --use-on-cd)"
+command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd)"
