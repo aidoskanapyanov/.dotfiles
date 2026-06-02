@@ -157,7 +157,6 @@ alias chrome='google-chrome-stable --no-sandbox --disable-gpu --disable-dev-shm-
 alias mlrc='mlr --ijson --opprint --barred cat'
 alias mlrcv='mlr --icsv --opprint --barred cat'
 alias notify='win-notify'
-alias bat='batcat'
 
 
 alias sview='wslview $(gh run list --json url -q ".[0].url" --workflow $(fd -H sandbox | rg -v delete | rev | cut --delimiter=/ --fields=1 | rev))'
@@ -165,7 +164,7 @@ alias srun='gh workflow run --ref $(git branch --show-current) $(fd -H sandbox |
 alias slist='gh run list --workflow $(fd -H -tf sandbox | rg -v delete | rev | cut --delimiter=/ --fields=1 | rev)'
 
 # fancy preview with syntax color highlighting
-export FZF_CTRL_R_OPTS='--ansi --preview-window=nohidden:wrap --preview "bash -c '\''printf \"%b\" \"$1\" | sed -E \"s/\\\\\\\\n/\\n/g; s/\\\\\\\\t/\\t/g\" | batcat --plain --style=numbers --color=always --language=zsh'\'' -- {}"'
+export FZF_CTRL_R_OPTS='--ansi --preview-window=nohidden:wrap --preview "bash -c '\''printf \"%b\" \"$1\" | sed -E \"s/\\\\\\\\n/\\n/g; s/\\\\\\\\t/\\t/g\"'\'' -- {}"'
 
 export MANPAGER='nvim +Man!'
 
