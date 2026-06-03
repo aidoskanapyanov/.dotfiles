@@ -28,5 +28,18 @@ return {
         { localRoot = vim.fn.getcwd(), remoteRoot = "/home/aidos/dev/work/seagard-backend" },
       },
     })
+
+    -- Wayflyer dev container (docker compose `dev` service)
+    -- Host repo is bind-mounted at /workspace in the container via docker-compose.override.yml
+    table.insert(dap.configurations.python, {
+      type = "python",
+      request = "attach",
+      name = "Attach to debugpy (wayflyer dev container)",
+      connect = { host = "127.0.0.1", port = 5678 },
+      justMyCode = false,
+      pathMappings = {
+        { localRoot = vim.fn.getcwd(), remoteRoot = "/workspace" },
+      },
+    })
   end,
 }
