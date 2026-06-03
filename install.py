@@ -266,12 +266,54 @@ def stow_dotfiles(dotfiles_dir: Path) -> None:
         except subprocess.CalledProcessError as e:
             print(f"Error stowing package '{package}': {e}", file=sys.stderr)
 
+
+def install_rust() -> None:
+    """Installs Rust toolchain via rustup, including cargo and rust-analyzer."""
+    cargo_home = Path(os.environ.get("CARGO_HOME", Path.home() / ".cargo"))
+    rustup_bin = cargo_home / "bin" / "rustup"
+    cargo_bin = cargo_home / "bin" / "cargo"
+
+    if rustup_bin.exists() and cargo_bin.exists():
+        print("--> Rust toolchain already installed. Ensuring rust-analyzer component...", flush=True)
+    else:
+        print("--> Installing Rust toolchain via rustup...", flush=True)
+        try:
+            cmd = (
+                "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs "
+                "| sh -s -- -y --no-modify-path --default-toolchain stable"
+            )
+            subprocess.run(cmd, shell=True, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error: Failed to install rustup: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    # Make cargo/rustc/rust-analyzer available on PATH for the rest of this script
+    os.environ["PATH"] = f"{cargo_home / 'bin'}{os.pathsep}{os.environ['PATH']}"
+
+    try:
+        subprocess.run([str(rustup_bin), "component", "add", "rust-analyzer"], check=True)
+
+        for tool in ("rustc", "cargo", "rust-analyzer"):
+            result = subprocess.run(
+                [str(cargo_home / "bin" / tool), "--version"],
+                capture_output=True, text=True, check=True
+            )
+            print(f"   {tool}: {result.stdout.strip()}", flush=True)
+
+        print("--> Rust toolchain ready.\n", flush=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error: Failed to configure Rust components: {e}", file=sys.stderr)
+        sys.exit(1)
+
 def main() -> None:
     # 1. Install system utilities (includes curl, libfuse2, tar)
     install_system_packages()
 
     # 1.2 install fzf separately
     install_latest_fzf()
+
+    # 1.2 install fzf separately
+    install_rust()
 
     # 2.0
     install_latest_treesitter_cli()
