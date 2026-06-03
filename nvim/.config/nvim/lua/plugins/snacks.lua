@@ -17,9 +17,9 @@ return {
     },
     bigfile = { enabled = true },
     gitbrowse = {
-      open = function(url)
-        vim.system({ "wslview", url })
-      end,
+      -- open = function(url)
+      --   vim.system({ "wslview", url })
+      -- end,
       url_patterns = {
         ["git.suresecure%.de"] = {
           branch = "/-/tree/{branch}",
