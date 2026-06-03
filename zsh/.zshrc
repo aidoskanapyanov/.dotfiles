@@ -189,7 +189,13 @@ export JQ_COLORS="0;34:0;31:0;32:0;33:0;32:0;35:0;35:0;36"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # eval "$(starship init zsh)"
-# . "$HOME/.cargo/env"
+
+# Rust toolchain
+if [ -f "$HOME/.cargo/env" ]; then
+  . "$HOME/.cargo/env"
+elif [ -d "$HOME/.cargo/bin" ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
