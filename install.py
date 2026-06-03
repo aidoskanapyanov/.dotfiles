@@ -12,6 +12,8 @@ PACKAGES = [
     "stow", "fd-find", "git", "curl", "libfuse2", "tar", "bat"
 ]
 
+FZF_BIN_LINK = Path("/usr/local/bin/fzf")
+
 NVIM_VERSION = "v0.12.0"
 NVIM_DOWNLOAD_URL = f"https://github.com/neovim/neovim/releases/download/{NVIM_VERSION}/nvim-linux-arm64.tar.gz"
 NVIM_INSTALL_DIR = Path(f"/opt/nvim-{NVIM_VERSION}")
@@ -23,6 +25,14 @@ TS_BIN_LINK = Path("/usr/local/bin/tree-sitter")
 
 def install_latest_treesitter_cli() -> None:
     """Downloads and extracts the latest precompiled Tree-Sitter CLI binary to system paths."""
+
+    if TS_BIN_LINK.exists():
+        result = subprocess.run([str(TS_BIN_LINK), "--version"], capture_output=True, text=True)
+        # TS_VERSION is "v0.25.1" but --version prints "tree-sitter 0.25.1"
+        if TS_VERSION.lstrip("v") in result.stdout:
+            print(f"--> Tree-Sitter CLI {TS_VERSION} already installed. Skipping.\n", flush=True)
+            return
+
     print(f"--> Downloading Tree-Sitter CLI {TS_VERSION} for Linux ARM64...", flush=True)
     cmd_prefix = get_sudo_prefix()
     import tempfile
@@ -62,14 +72,27 @@ def get_sudo_prefix() -> list[str]:
 
 def install_system_packages() -> None:
     """Updates apt cache and installs the required system utilities."""
-    print("--> Updating apt package index...", flush=True)
     cmd_prefix = get_sudo_prefix()
 
+    missing = []
+    for pkg in PACKAGES:
+        result = subprocess.run(
+            ["dpkg-query", "-W", "-f=${Status}", pkg],
+            capture_output=True, text=True
+        )
+        if "install ok installed" not in result.stdout:
+            missing.append(pkg)
+
+    if not missing:
+        print("--> All system packages already installed. Skipping apt.\n", flush=True)
+        return
+
+    print(f"--> Missing packages: {', '.join(missing)}", flush=True)
+    print("--> Updating apt package index...", flush=True)
     try:
         subprocess.run(cmd_prefix + ["apt-get", "update", "-y"], check=True)
-        print(f"--> Installing packages: {', '.join(PACKAGES)}...", flush=True)
         subprocess.run(
-            cmd_prefix + ["apt-get", "install", "-y", "--no-install-recommends"] + PACKAGES,
+            cmd_prefix + ["apt-get", "install", "-y", "--no-install-recommends"] + missing,
             check=True
         )
         print("--> System packages installed successfully.\n", flush=True)
@@ -79,6 +102,10 @@ def install_system_packages() -> None:
 
 def install_latest_fzf() -> None:
     """Clones fzf from git and executes the installer script according to official guidelines."""
+
+    if FZF_BIN_LINK.exists():
+        return
+
     print("--> Installing latest fzf from GitHub source...", flush=True)
 
     # We will install fzf into /opt/fzf for a clean global path, or fall back to home
