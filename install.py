@@ -23,6 +23,67 @@ TS_VERSION = "v0.25.1"
 TS_DOWNLOAD_URL = f"https://github.com/tree-sitter/tree-sitter/releases/download/{TS_VERSION}/tree-sitter-linux-arm64.gz"
 TS_BIN_LINK = Path("/usr/local/bin/tree-sitter")
 
+
+LAZYGIT_BIN_LINK = Path("/usr/local/bin/lazygit")
+
+
+def install_lazygit() -> None:
+    """Downloads and installs the latest lazygit release binary."""
+    import json
+    import tempfile
+    import urllib.request
+
+    cmd_prefix = get_sudo_prefix()
+
+    # Resolve latest version from GitHub releases API
+    try:
+        with urllib.request.urlopen(
+            "https://api.github.com/repos/jesseduffield/lazygit/releases/latest"
+        ) as resp:
+            tag = json.loads(resp.read())["tag_name"]  # e.g. "v0.44.1"
+            version = tag.lstrip("v")
+    except Exception as e:
+        print(f"Warning: Failed to fetch latest lazygit version: {e}", file=sys.stderr)
+        return
+
+    # Skip if already installed at the same version
+    if LAZYGIT_BIN_LINK.exists():
+        result = subprocess.run(
+            [str(LAZYGIT_BIN_LINK), "--version"], capture_output=True, text=True
+        )
+        if version in result.stdout:
+            print(f"--> lazygit {version} already installed. Skipping.\n", flush=True)
+            return
+
+    # Map machine arch to release asset arch
+    machine = subprocess.run(["uname", "-m"], capture_output=True, text=True).stdout.strip()
+    arch = "arm64" if machine == "aarch64" else machine
+
+    url = (
+        f"https://github.com/jesseduffield/lazygit/releases/download/"
+        f"v{version}/lazygit_{version}_Linux_{arch}.tar.gz"
+    )
+
+    print(f"--> Downloading lazygit {version} for Linux {arch}...", flush=True)
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tar_file = Path(tmpdir) / "lazygit.tar.gz"
+        try:
+            subprocess.run(["curl", "-fL", url, "-o", str(tar_file)], check=True)
+            subprocess.run(["tar", "-xzf", str(tar_file), "-C", tmpdir, "lazygit"], check=True)
+
+            print(f"   Installing lazygit to {LAZYGIT_BIN_LINK}", flush=True)
+            subprocess.run(
+                cmd_prefix + ["install", str(Path(tmpdir) / "lazygit"), "-D", "-t", "/usr/local/bin/"],
+                check=True,
+            )
+
+            result = subprocess.run(
+                [str(LAZYGIT_BIN_LINK), "--version"], capture_output=True, text=True
+            )
+            print(f"--> lazygit setup ready: {result.stdout.strip()}\n", flush=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Warning: Failed to install lazygit: {e}", file=sys.stderr)
+
 def install_latest_treesitter_cli() -> None:
     """Downloads and extracts the latest precompiled Tree-Sitter CLI binary to system paths."""
 
@@ -347,6 +408,9 @@ def main() -> None:
 
     # 2. Build custom binary infrastructure for Neovim v0.12
     install_neovim()
+
+    # 2.5 install lazygit
+    install_lazygit()
 
     # 3. Force deploy dotfiles first (your custom .zshrc and .p10k.zsh)
     dotfiles_dir_path = Path(__file__).parent.resolve()
