@@ -30,3 +30,6 @@ bindings = [
     { key = "C", mods = "Control", action = "ClearSelection" },
     { key = "C", mods = "Control", action = "ReceiveChar" }
 ]
+
+[window]
+option_as_alt = "Both"
