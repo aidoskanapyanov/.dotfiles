@@ -19,3 +19,14 @@ style = "Bold Italic"
 
 [selection]
 save_to_clipboard = true
+
+[keyboard]
+bindings = [
+    # Map Ctrl+V to paste normally
+    { key = "V", mods = "Control", action = "Paste" },
+
+    # The multi-action sequence for Ctrl+C
+    { key = "C", mods = "Control", action = "Copy" },
+    { key = "C", mods = "Control", action = "ClearSelection" },
+    { key = "C", mods = "Control", action = "ReceiveChar" }
+]
