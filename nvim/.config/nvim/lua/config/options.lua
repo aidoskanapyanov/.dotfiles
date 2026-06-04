@@ -27,3 +27,20 @@ vim.filetype.add({
     pgsql = "sql",
   },
 })
+
+
+-- Sync Neovim yank/paste with the system clipboard using OSC 52
+vim.opt.clipboard = "unnamedplus"
+
+-- Explicitly force the OSC 52 provider (highly reliable over SSH/Containers)
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
