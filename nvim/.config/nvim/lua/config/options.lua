@@ -32,15 +32,13 @@ vim.filetype.add({
 -- Sync Neovim yank/paste with the system clipboard using OSC 52
 vim.opt.clipboard = "unnamedplus"
 
--- Explicitly force the OSC 52 provider (highly reliable over SSH/Containers)
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
-}
+-- Only force OSC 52 when there's no native clipboard tool
+-- (i.e. inside the devcontainer). On the host, let nvim use pbcopy/pbpaste.
+if vim.fn.executable("pbpaste") == 0 and vim.fn.executable("xclip") == 0 then
+  local osc52 = require("vim.ui.clipboard.osc52")
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
+  }
+end

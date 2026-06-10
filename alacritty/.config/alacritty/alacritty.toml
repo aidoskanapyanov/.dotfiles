@@ -33,3 +33,6 @@ bindings = [
 
 [window]
 option_as_alt = "Both"
+
+[terminal]
+osc52 = "CopyPaste"
