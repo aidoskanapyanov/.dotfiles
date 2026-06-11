@@ -1,21 +1,39 @@
 #!/usr/bin/expect -f
 
+# Configuration paths and credentials
 set config_path "/path/to/ovpn/file/profile-userlocked.ovpn"
 set username "secret"
 set password "secret"
 set totp_secret "secret"
+set mac_login_password "secret"
 
+set timeout 30
+
+# Spawn OpenVPN
 spawn sudo openvpn --config $config_path --auth-user-pass
 
-expect "Enter Auth Username:" {
-    send "$username\r"
+# 1. FIX HANGS: Use a multi-branch 'expect' statement.
+# If sudo is already cached, it skips "Password:" and goes straight to Username.
+expect {
+    "Password:" {
+        send "$mac_login_password\r"
+        exp_continue
+    }
+    "Enter Auth Username:" {
+        send "$username\r"
+    }
 }
 
+# 2. FIX PASSWORD VISIBILITY: Turn off terminal echo before sending, then wait for a split second.
 expect "Enter Auth Password:" {
+    stty -echo
+    sleep 0.5
     send "$password\r"
+    stty echo
 }
 
-expect "CHALLENGE: Enter Authenticator Code" {
+# 3. ROBUST MATCHING: Use wildcards for the challenge question.
+expect -re ".*CHALLENGE.*" {
     set otp [exec oathtool --totp -b $totp_secret]
     send "$otp\r"
 }
