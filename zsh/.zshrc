@@ -239,3 +239,10 @@ command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd)"
 source <(fzf --zsh)
 
 [[ -f /root/.sh_functions_wf ]] && . /root/.sh_functions_wf
+
+eval "$(op completion zsh)"
+compdef _op op
+
+eval "$(direnv hook zsh)"
+
+export PATH="$PATH:/opt/homebrew/sbin"
