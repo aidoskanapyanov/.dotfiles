@@ -163,6 +163,8 @@ alias sview='wslview $(gh run list --json url -q ".[0].url" --workflow $(fd -H s
 alias srun='gh workflow run --ref $(git branch --show-current) $(fd -H sandbox | rg -v delete | rev | cut --delimiter=/ --fields=1 | rev)'
 alias slist='gh run list --workflow $(fd -H -tf sandbox | rg -v delete | rev | cut --delimiter=/ --fields=1 | rev)'
 
+alias 2md="pbpaste | uv run --isolated --python 3.12 --with markdownify python -c \"import sys, markdownify; print(markdownify.markdownify(sys.stdin.read(), heading_style='ATX'))\" | pbcopy"
+
 # fancy preview with syntax color highlighting
 export FZF_CTRL_R_OPTS='--ansi --preview-window=nohidden:wrap --preview "bash -c '\''printf \"%b\" \"$1\" | sed -E \"s/\\\\\\\\n/\\n/g; s/\\\\\\\\t/\\t/g\"'\'' -- {}"'
 
