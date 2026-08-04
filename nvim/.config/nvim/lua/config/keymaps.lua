@@ -122,3 +122,7 @@ vim.keymap.set("v", "gx", open_url, { noremap = true, silent = true })
 -- Navigate quickfix list with Alt + Arrow keys
 vim.keymap.set("n", "<A-Left>", "[q", { desc = "Previous quickfix item", remap = true })
 vim.keymap.set("n", "<A-Right>", "]q", { desc = "Next quickfix item" , remap = true})
+
+
+-- Search inside selection
+vim.keymap.set('x', '<leader>/', '<Esc>/\\%V', { desc = "Search inside selection" })
