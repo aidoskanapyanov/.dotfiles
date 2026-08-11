@@ -1,0 +1,7 @@
+layout_deepseek_claude() {
+  if [ -f "$HOME/.config/direnv/direnvrc.local" ]; then
+    source_env "$HOME/.config/direnv/direnvrc.local"
+  else
+    log_status "Warning: $HOME/.config/direnv/direnvrc.local not found. Keys not loaded."
+  fi
+}
