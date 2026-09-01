@@ -33,7 +33,7 @@ return {
         fullscreen = true,
       },
       sources = { lines = { layout = { fullscreen = false } } },
-      previewers = { git = { native = true } },
+      previewers = { diff = { style = "terminal" } },
       formatters = {
         file = {
           truncate = 200, -- truncate the file path to (roughly) this length
