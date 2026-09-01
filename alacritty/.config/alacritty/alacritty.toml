@@ -62,11 +62,11 @@ cyan = '#7dcfff'
 white = '#c0caf5'
 
 
-[bell]
-animation = "Linear"
-duration = 150
-color = "0xffffff"
-
-[bell.command]
-program = "osascript"
-args = ["-e", "display notification \"Claude needs your attention!\" with title \"Claude Code\""]
+# [bell]
+# animation = "Linear"
+# duration = 150
+# color = "0xffffff"
+#
+# [bell.command]
+# program = "osascript"
+# args = ["-e", "display notification \"Claude needs your attention!\" with title \"Claude Code\""]
