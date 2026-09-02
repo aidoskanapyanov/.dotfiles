@@ -1,0 +1,1 @@
+COMMAND open -na "Google Chrome" --args --profile-directory="Profile 2" %s
