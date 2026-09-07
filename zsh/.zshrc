@@ -248,3 +248,4 @@ compdef _op op
 eval "$(direnv hook zsh)"
 
 export PATH="$PATH:/opt/homebrew/sbin"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
