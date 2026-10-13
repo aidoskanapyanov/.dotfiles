@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Get windows, filter out the search-window itself, and pass to fzf
+target=$(tmux list-windows -F "#I - #W" | grep -v "search-window" | fzf)
+
+# If user cancels fzf
+if [[ -z $target ]]; then
+    exit 0
+fi
+
+# Extract the window index number
+window_target=$(echo "$target" | awk '{print $1}')
+
+# Switch to the selected window
+tmux select-window -t "$window_target"
