@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+# --- add your other dotfiles setup (symlinks, shell config, etc.) above this line ---
+
+LOG=/tmp/auto-bootstrap.log
+
+bootstrap_wayflyer_workspace() {
+  local ws
+  ws=$(ls -d /workspaces/wayflyer* 2>/dev/null | head -n1)
+
+  # Not a wayflyer workspace (dotfiles are shared across repos).
+  if [ -z "$ws" ] || [ ! -x "$ws/bin/refresh-workspace" ]; then
+    return 0
+  fi
+
+  (
+    set -e
+    cd "$ws"
+
+    echo "Waiting for Postgres..."
+    until pg_isready -q; do sleep 1; done
+
+    # Only bootstrap a fresh workspace. close + reopen keeps the DB, so this is skipped.
+    if psql -lqt | cut -d'|' -f1 | grep -qw conjura; then
+      echo "conjura DB already exists, skipping bootstrap."
+      exit 0
+    fi
+
+    echo "Creating conjura database..."
+    createdb conjura
+
+    echo "Refreshing workspace..."
+    ./bin/refresh-workspace
+
+    echo "Pulling prod snapshot..."
+    poetry run wf snap pull
+
+    echo "Bootstrap complete."
+  ) 2>&1 | tee "$LOG"
+
+  # A failed bootstrap must not fail the dotfiles install.
+  local status=${PIPESTATUS[0]}
+  if [ "$status" -ne 0 ]; then
+    echo "Workspace bootstrap failed (exit $status). See $LOG." >&2
+  fi
+}
+
+bootstrap_wayflyer_workspace
+exit 0
