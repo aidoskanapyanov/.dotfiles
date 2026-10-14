@@ -5,6 +5,33 @@ set -uo pipefail
 
 LOG=/tmp/auto-bootstrap.log
 
+BOOTSTRAP_BODY='
+set -e
+cd "$1"
+
+echo "Waiting for Postgres..."
+until pg_isready -q; do sleep 1; done
+
+if psql -lqt | cut -d"|" -f1 | grep -qw conjura; then
+  echo "conjura DB already exists, skipping bootstrap."
+  exit 0
+fi
+
+echo "Creating conjura database..."
+createdb conjura
+
+echo "Installing Python dependencies..."
+poetry sync
+
+echo "Refreshing workspace..."
+./bin/refresh-workspace
+
+echo "Pulling prod snapshot..."
+poetry run wf snap pull
+
+echo "Bootstrap complete."
+'
+
 bootstrap_wayflyer_workspace() {
   local ws
   ws=$(ls -d /workspaces/wayflyer* 2>/dev/null | head -n1)
@@ -14,30 +41,8 @@ bootstrap_wayflyer_workspace() {
     return 0
   fi
 
-  (
-    set -e
-    cd "$ws"
-
-    echo "Waiting for Postgres..."
-    until pg_isready -q; do sleep 1; done
-
-    # Only bootstrap a fresh workspace. close + reopen keeps the DB, so this is skipped.
-    if psql -lqt | cut -d'|' -f1 | grep -qw conjura; then
-      echo "conjura DB already exists, skipping bootstrap."
-      exit 0
-    fi
-
-    echo "Creating conjura database..."
-    createdb conjura
-
-    echo "Refreshing workspace..."
-    ./bin/refresh-workspace
-
-    echo "Pulling prod snapshot..."
-    poetry run wf snap pull
-
-    echo "Bootstrap complete."
-  ) 2>&1 | tee "$LOG"
+  # Interactive shell wires up AWS credentials; its job-control noise is harmless.
+  bash -ic "$BOOTSTRAP_BODY" _ "$ws" 2>&1 | tee "$LOG"
 
   # A failed bootstrap must not fail the dotfiles install.
   local status=${PIPESTATUS[0]}
