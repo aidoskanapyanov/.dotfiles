@@ -94,6 +94,12 @@ vim.keymap.set("n", "<leader>y", function()
   require("noice").notify("Copied: " .. filepath, "info")
 end, { desc = "Copy relative filename" })
 
+vim.keymap.set("n", "<leader>Y", function()
+  local filepath = vim.fn.expand("%:p") -- Get absolute path
+  vim.fn.setreg(vim.v.register, filepath)
+  require("noice").notify("Copied: " .. filepath, "info")
+end, { desc = "Copy absolute filename" })
+
 -- FzfLua keymaps
 vim.keymap.set(
   "n",
